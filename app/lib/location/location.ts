@@ -11,23 +11,24 @@ interface GeolocationData {
 
 export type UserGeolocation = GeolocationData | undefined;
 
-export function getUserLocation() {
-	let data: UserGeolocation;
-
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(
-			(location) => {
-				data = {
-					latitude: location.coords.latitude,
-					longitude: location.coords.longitude,
-					altitude: location.coords.altitude,
-				};
-			},
-			() => {
-				data = undefined;
-			},
-		);
-	}
-
-	return data;
+export function getUserLocation(): Promise<UserGeolocation> {
+	return new Promise((resolve) => {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				(location) => {
+					const data: GeolocationData = {
+						latitude: location.coords.latitude,
+						longitude: location.coords.longitude,
+						altitude: location.coords.altitude,
+					};
+					resolve(data);
+				},
+				() => {
+					resolve(undefined);
+				},
+			);
+		} else {
+			resolve(undefined);
+		}
+	});
 }
