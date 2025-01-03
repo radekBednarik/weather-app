@@ -7,9 +7,11 @@
 import type { MetJsonForecast } from "@/app/lib/met-api/declarations";
 
 export interface ApiError {
-	message?: string;
-	status_code?: number;
-	error?: Error;
+	error: {
+		message?: string;
+		status_code?: number;
+		error?: Error;
+	};
 }
 
 export async function getForecastData({
@@ -44,14 +46,19 @@ export async function getForecastData({
 		}
 
 		return {
-			message: response.statusText,
-			status_code: response.status,
+			error: {
+				message: response.statusText,
+				status_code: response.status,
+			},
 		} satisfies ApiError;
 	} catch (error) {
 		const _error = error as Error;
+
 		return {
-			message: "fetch getForecastData failed.",
-			error: _error,
+			error: {
+				message: "fetch getForecastData failed.",
+				error: _error,
+			},
 		} satisfies ApiError;
 	}
 }
