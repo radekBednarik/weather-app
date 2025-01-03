@@ -23,8 +23,14 @@ const GeolocationInfobox = () => {
 				<p>Getting location...</p>
 			) : (
 				<div className="flex flex-col">
-					<p className="self-end">Latitude: {location.latitude}</p>
-					<p className="self-end">Longitude: {location.longitude}</p>
+					<p className="self-end">
+						<span className="font-semibold">Latitude: </span>
+						{location.latitude}
+					</p>
+					<p className="self-end">
+						<span className="font-semibold">Longitude: </span>
+						{location.longitude}
+					</p>
 					{!location.altitude ? (
 						""
 					) : (
