@@ -10,7 +10,7 @@ export interface MetJsonForecast {
 }
 
 export interface PointGeometry {
-	coordinates: number[]; // [longitue, latitude, altitude]
+	coordinates: number[]; // [longitude, latitude, altitude]
 	type: "Point";
 }
 
