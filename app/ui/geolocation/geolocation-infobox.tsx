@@ -4,6 +4,10 @@ import {
 	type UserGeolocation,
 	getUserLocation,
 } from "@/app/lib/location/location";
+import {
+	getGeolocationDataFromSessionStorage,
+	saveGeolocationToSessionStorage,
+} from "@/app/lib/storages/browser-storage";
 import { useEffect, useState } from "react";
 
 const GeolocationInfobox = () => {
@@ -11,7 +15,15 @@ const GeolocationInfobox = () => {
 
 	useEffect(() => {
 		async function fetchLoc() {
-			setLocation(await getUserLocation());
+			const geoData = getGeolocationDataFromSessionStorage();
+
+			if (!geoData) {
+				const location = await getUserLocation();
+				setLocation(location);
+				saveGeolocationToSessionStorage(location);
+			} else {
+				setLocation(geoData);
+			}
 		}
 
 		fetchLoc();
