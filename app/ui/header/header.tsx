@@ -57,7 +57,7 @@ function NextOneHourSummaryIcon() {
 			src={icon}
 			width={240}
 			height={240}
-			alt={`Weather for the next hour should be ${iconName ? iconName : "big bright yellow sun"}. However, if it was not possible to resolve, the default picture is the big bright yellow sun.`}
+			alt={`Weather for the next hour should be ${iconName.length > 0 ? iconName : "big bright yellow sun"}. However, if it was not possible to resolve, the default picture is the big bright yellow sun.`}
 		/>
 	);
 }

@@ -8,7 +8,6 @@ export function isWithinHoursInterval(
 ) {
 	const start = subHours(new Date(referenceDate), subHour);
 	const end = addHours(new Date(referenceDate), addHour);
-
 	const result = isWithinInterval(new Date(currentDate), { start, end });
 
 	return result;
