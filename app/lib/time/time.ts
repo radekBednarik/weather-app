@@ -1,13 +1,15 @@
 import { addHours, isWithinInterval, subHours } from "date-fns";
 
 export function isWithinHoursInterval(
-	timestamp: number,
-	referenceTimestamp: number,
+	currentDate: string,
+	referenceDate: string,
 	subHour: number,
 	addHour: number,
 ) {
-	const start = subHours(referenceTimestamp, subHour);
-	const end = addHours(referenceTimestamp, addHour);
+	const start = subHours(new Date(referenceDate), subHour);
+	const end = addHours(new Date(referenceDate), addHour);
 
-	return isWithinInterval(timestamp, { start, end });
+	const result = isWithinInterval(new Date(currentDate), { start, end });
+
+	return result;
 }

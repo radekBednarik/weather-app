@@ -3,27 +3,27 @@ import { isWithinHoursInterval } from "@/app/lib/time/time";
 
 export function getSpecificTimepointForecast(
 	data: MetJsonForecast,
-	timestamp: number,
+	currentDate: string,
 ) {
 	const filtered = data.properties.timeseries.filter((step) => {
 		// summary is just a name of the icon
-		const summary = step.data.next_1_hours?.summary;
+		const summary = step.data.next_1_hours?.summary.symbol_code;
 
 		if (summary) {
-			const stepTimestamp = new Date(step.time).getTime();
+			const stepTimestamp = step.time;
 
-			if (isWithinHoursInterval(timestamp, stepTimestamp, 1, 1)) {
+			if (isWithinHoursInterval(currentDate, stepTimestamp, 1, 1)) {
 				return summary;
 			}
 		}
 	});
 
-	if (filtered.length > 1 || filtered.length === 0) {
+	if (filtered.length === 0) {
 		console.error(
-			"There can be only one filtered ForecastTimeStep. Something went very wrong.",
+			"There must be at least one filtered ForecastTimeStep. Something went very wrong.",
 		);
 		return undefined;
 	}
 
-	return filtered[0];
+	return filtered[filtered.length - 1];
 }
