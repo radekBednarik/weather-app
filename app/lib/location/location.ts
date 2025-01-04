@@ -3,7 +3,7 @@
  * @see https://developer.mozilla.org/en-US/docs/Web/API/Geolocation
  */
 
-interface GeolocationData {
+export interface GeolocationData {
 	latitude: number;
 	longitude: number;
 	altitude: number | null;

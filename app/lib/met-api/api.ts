@@ -18,7 +18,7 @@ export async function getForecastData({
 	latitude,
 	longitude,
 	altitude,
-}: { latitude: number; longitude: number; altitude?: number }) {
+}: { latitude: number; longitude: number; altitude: number | null }) {
 	const url = "https://api.met.no/weatherapi/locationforecast/2.0/complete";
 
 	const params = new URLSearchParams();

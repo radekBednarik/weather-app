@@ -4,8 +4,10 @@ import {
 	type UserGeolocation,
 	getUserLocation,
 } from "@/app/lib/location/location";
+import type { MetJsonForecast } from "@/app/lib/met-api/declarations";
 import {
 	getGeolocationDataFromSessionStorage,
+	saveForecastToSessionStorage,
 	saveGeolocationToSessionStorage,
 } from "@/app/lib/storages/browser-storage";
 import { useEffect, useState } from "react";
@@ -21,8 +23,10 @@ const GeolocationInfobox = () => {
 				const location = await getUserLocation();
 				setLocation(location);
 				saveGeolocationToSessionStorage(location);
+				postGeodataAndStoreForecast(location);
 			} else {
 				setLocation(geoData);
+				postGeodataAndStoreForecast(geoData);
 			}
 		}
 
@@ -55,3 +59,15 @@ const GeolocationInfobox = () => {
 };
 
 export default GeolocationInfobox;
+
+function postGeodataAndStoreForecast(geoData: UserGeolocation) {
+	fetch("/api/use-geolocation", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(geoData),
+	})
+		.then((response) => response.json())
+		.then((data: MetJsonForecast) => saveForecastToSessionStorage(data));
+}
