@@ -2,7 +2,11 @@
 
 import useGetForecast from "@/app/hooks/use-get-forecast";
 import React, { createContext, ReactNode } from "react";
-export const WeatherForecastContext = createContext({});
+import { MetJsonForecast } from "../lib/met-api/declarations";
+
+export const WeatherForecastContext = createContext<
+  MetJsonForecast | undefined
+>(undefined);
 
 export const WeatherForecastProvider = ({
   children,
@@ -20,7 +24,7 @@ export const WeatherForecastProvider = ({
   }
 
   return (
-    <WeatherForecastContext.Provider value={{}}>
+    <WeatherForecastContext.Provider value={undefined}>
       {children}
     </WeatherForecastContext.Provider>
   );

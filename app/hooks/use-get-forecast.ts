@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	type GeolocationData,
 	getUserLocation,
@@ -26,6 +28,8 @@ const useGetForecast = () => {
 
 		getForecastHandler();
 	}, []);
+
+	console.log(forecast);
 
 	return forecast;
 };
