@@ -20,7 +20,10 @@ const useGetForecast = () => {
 			if (location) {
 				const forecast = await getForecast({ ...location });
 
-				if (!Object.prototype.hasOwnProperty.call(forecast, "error")) {
+				if (
+					forecast &&
+					!Object.prototype.hasOwnProperty.call(forecast, "error")
+				) {
 					setForecast(forecast as MetJsonForecast);
 				}
 			}
