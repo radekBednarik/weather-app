@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
 		(await req.json()) as GeolocationData;
 
 	if (
-		typeof cache.expires !== "undefined" ||
+		typeof cache.expires === "undefined" ||
 		(cache.expires && compareAsc(new Date(cache.expires), new Date()) < 0)
 	) {
 		const data = await getForecastData({ latitude, longitude, altitude });
