@@ -1,12 +1,18 @@
 import { compareAsc } from "date-fns";
 
 import type { GeolocationData } from "@/app/lib/location/location";
-import { getForecastData } from "@/app/lib/met-api/api";
+import { type ApiError, getForecastData } from "@/app/lib/met-api/api";
+import type { MetJsonForecast } from "@/app/lib/met-api/declarations";
 import { type NextRequest, NextResponse } from "next/server";
 
-const cache = {
-	data: {},
-	expires: "",
+interface Cache {
+	data?: MetJsonForecast | ApiError;
+	expires?: string;
+}
+
+const cache: Cache = {
+	data: undefined,
+	expires: undefined,
 };
 
 export async function POST(req: NextRequest) {
@@ -14,15 +20,14 @@ export async function POST(req: NextRequest) {
 		(await req.json()) as GeolocationData;
 
 	if (
-		cache.expires === "" ||
-		(cache.expires.length > 0 &&
-			compareAsc(new Date(cache.expires), new Date()) < 0)
+		typeof cache.expires !== "undefined" ||
+		(cache.expires && compareAsc(new Date(cache.expires), new Date()) < 0)
 	) {
 		const data = await getForecastData({ latitude, longitude, altitude });
 
-		cache.data = data.data ? data.data : {};
-		cache.expires = data.expires ? data.expires : "";
+		cache.data = data.data;
+		cache.expires = data.expires;
 	}
 
-	return NextResponse.json(cache.data);
+	return NextResponse.json(cache);
 }
