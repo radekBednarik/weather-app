@@ -29,19 +29,18 @@ const useGetForecast = () => {
 		getForecastHandler();
 	}, []);
 
-	console.log(forecast);
-
 	return forecast;
 };
 
 export default useGetForecast;
 
-async function getForecast(location: GeolocationData) {
-	const data = (await fetch("/api/use-geolocation", {
+function getForecast(location: GeolocationData) {
+	const data = fetch("/api/use-geolocation", {
 		headers: { "Content-Type": "application/json" },
 		method: "POST",
 		body: JSON.stringify(location),
-	})) as unknown as MetJsonForecast | ApiError;
-
+	})
+		.then((response) => response.json())
+		.then((data: MetJsonForecast | ApiError | undefined) => data);
 	return data;
 }
