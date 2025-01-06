@@ -2,35 +2,36 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/ui/header/header";
+import { WeatherForecastProvider } from "@/app/contexts/weather-data-context";
 
 const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-	title: "Weather forecast",
-	description: "Get weather forecast for your current location.",
+  title: "Weather forecast",
+  description: "Get weather forecast for your current location.",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="en">
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased container mx-auto my-auto mt-2`}
-			>
-				<Header />
-				{children}
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased container mx-auto my-auto mt-2`}
+      >
+        <Header />
+        <WeatherForecastProvider>{children}</WeatherForecastProvider>
+      </body>
+    </html>
+  );
 }
