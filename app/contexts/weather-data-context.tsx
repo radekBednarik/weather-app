@@ -13,7 +13,7 @@ export const WeatherForecastProvider = ({
 
   if (weatherData) {
     return (
-      <Suspense fallback="Loading data...">
+      <Suspense fallback={<p>Loading data...</p>}>
         <WeatherForecastContext.Provider value={weatherData}>
           {children}
         </WeatherForecastContext.Provider>
@@ -22,7 +22,7 @@ export const WeatherForecastProvider = ({
   }
 
   return (
-    <Suspense fallback="Loading data...">
+    <Suspense fallback=<p>Loading data...</p>>
       <WeatherForecastContext.Provider value={{}}>
         {children}
       </WeatherForecastContext.Provider>
