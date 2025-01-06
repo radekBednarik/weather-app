@@ -5,6 +5,7 @@
  */
 
 import type { MetJsonForecast } from "@/app/lib/met-api/declarations";
+import { add } from "date-fns";
 
 export interface ApiError {
 	error: {
@@ -37,12 +38,18 @@ export async function getForecastData({
 				"User-Agent": "Personal web forecast application for fun.",
 				"Content-Type": "application/json;charset=UTF-8",
 			},
+			next: { revalidate: 3600 },
 		});
+
+		const headerExpires =
+			response.headers.get("expires") ||
+			add(new Date(), { hours: 1 }).toUTCString();
 
 		const json = await response.json();
 
 		if (response.ok) {
-			return json as MetJsonForecast;
+			const _json = json as MetJsonForecast;
+			return { data: _json, expires: headerExpires };
 		}
 
 		return {
