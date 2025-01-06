@@ -1,4 +1,3 @@
-export const dynamic = "force-static";
 import { compareAsc } from "date-fns";
 
 import type { GeolocationData } from "@/app/lib/location/location";
@@ -7,21 +6,22 @@ import { type NextRequest, NextResponse } from "next/server";
 
 const cache = {
 	data: {},
-	expires: new Date().toUTCString(),
+	expires: "",
 };
 
 export async function POST(req: NextRequest) {
 	const { latitude, longitude, altitude } =
 		(await req.json()) as GeolocationData;
 
-	const data = await getForecastData({ latitude, longitude, altitude });
-
 	if (
-		data.expires &&
-		compareAsc(new Date(cache.expires), new Date(data.expires)) < 0
+		cache.expires === "" ||
+		(cache.expires.length > 0 &&
+			compareAsc(new Date(cache.expires), new Date()) < 0)
 	) {
-		cache.data = data.data;
-		cache.expires = data.expires;
+		const data = await getForecastData({ latitude, longitude, altitude });
+
+		cache.data = data.data ? data.data : {};
+		cache.expires = data.expires ? data.expires : "";
 	}
 
 	return NextResponse.json(cache.data);
