@@ -56,5 +56,3 @@ const Temperature: FC<TemperatureProps> = ({ temperature }) => {
 		</>
 	);
 };
-
-const ForecastImage = () => {};
