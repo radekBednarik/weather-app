@@ -3,6 +3,7 @@
 import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
 import GeolocationInfobox from "@/app/ui/geolocation/geolocation-infobox";
 import { useContext } from "react";
+import WeatherForecastList from "./ui/weather/weather-forecast-list";
 
 export default function Home() {
 	const context = useContext(WeatherForecastContext);
@@ -13,6 +14,7 @@ export default function Home() {
 	return (
 		<main className="flex flex-col mt-10">
 			<GeolocationInfobox />
+			<WeatherForecastList />
 		</main>
 	);
 }
