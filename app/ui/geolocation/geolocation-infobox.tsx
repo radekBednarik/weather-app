@@ -1,5 +1,3 @@
-"use client";
-
 import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
 import { getLocationFromForecast } from "@/app/lib/forecast/process";
 import { useContext } from "react";
