@@ -4,12 +4,14 @@ import type { FC } from "react";
 interface ForecastIconProps {
 	icon: string | StaticImageData;
 	alt: string;
+	width: number;
+	height: number;
 }
 
-const ForecastIcon: FC<ForecastIconProps> = ({ icon, alt }) => {
+const ForecastIcon: FC<ForecastIconProps> = ({ icon, alt, width, height }) => {
 	return (
 		<div id="forecast-icon">
-			<Image src={icon} width={160} height={160} alt={alt} />
+			<Image src={icon} width={width} height={height} alt={alt} />
 		</div>
 	);
 };
