@@ -27,3 +27,7 @@ export function getSpecificTimepointForecast(
 
 	return filtered[filtered.length - 1];
 }
+
+export function getLocationFromForecast(data: MetJsonForecast) {
+	return data.geometry.coordinates;
+}

@@ -1,3 +1,20 @@
+"use client";
+
+import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
+import GeolocationInfobox from "@/app/ui/geolocation/geolocation-infobox";
+import { useContext } from "react";
+import WeatherForecastList from "./ui/weather/weather-forecast-list";
+
 export default function Home() {
-	return <div></div>;
+	const context = useContext(WeatherForecastContext);
+	// for now just throw
+	if (typeof context === "undefined")
+		throw new Error("Return context cannot be undefined.");
+
+	return (
+		<main className="flex flex-col mt-10">
+			<GeolocationInfobox />
+			<WeatherForecastList />
+		</main>
+	);
 }
