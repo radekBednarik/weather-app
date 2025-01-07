@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { CgUnavailable } from "react-icons/cg";
 import { WiThermometer } from "react-icons/wi";
 import defaultIcon from "../../../public/weather-icons/clearsky_day.png";
-import ForecastIcon from "../icons/forecast-icon";
+import ForecastImage from "../images/forecast-image";
 
 interface WeatherForecastListItemProps {
 	time: string;
@@ -22,7 +22,7 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 
 			{iconName ? (
 				<div id="iconName">
-					<ForecastIcon
+					<ForecastImage
 						icon={icon}
 						alt={`For the next hour it should be ${time}.`}
 						width={120}

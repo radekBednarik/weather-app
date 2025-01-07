@@ -2,7 +2,7 @@
 
 import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
 import { getSpecificTimepointForecast } from "@/app/lib/forecast/process";
-import ForecastIcon from "@/app/ui/icons/forecast-icon";
+import ForecastImage from "@/app/ui/images/forecast-image";
 import { useContext } from "react";
 import defaultIcon from "../../../public/weather-icons/clearsky_day.png";
 
@@ -20,7 +20,7 @@ const HeaderForecastSummaryIcon = () => {
 
 	return (
 		<div id="forecast-summary-icon" className="absolute top-0 left-0">
-			<ForecastIcon
+			<ForecastImage
 				icon={icon}
 				alt={`For the next hour the weather should be ${iconName}`}
 				width={160}
