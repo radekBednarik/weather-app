@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { CgUnavailable } from "react-icons/cg";
 import { WiThermometer } from "react-icons/wi";
-import defaultIcon from "../../../public/weather-icons/clearsky_day.png";
 import ForecastImage from "../images/forecast-image";
 
 interface WeatherForecastListItemProps {
@@ -15,22 +14,11 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 	iconName,
 	temperature,
 }) => {
-	const icon = iconName ? `/weather-icons/${iconName}.png` : defaultIcon;
 	return (
 		<div className="flex flex-row justify-between items-center px-4 border shadow-md rounded-md mb-2">
 			<div id="time">{time}</div>
 
-			{iconName ? (
-				<div id="iconName">
-					<ForecastImage
-						icon={icon}
-						alt={`For the next hour it should be ${time}.`}
-						width={120}
-						height={120}
-					/>
-				</div>
-			) : undefined}
-
+			<SummaryImage iconName={iconName} />
 			<Temperature temperature={temperature} />
 		</div>
 	);
@@ -53,6 +41,29 @@ const Temperature: FC<TemperatureProps> = ({ temperature }) => {
 			) : (
 				<CgUnavailable />
 			)}{" "}
+		</>
+	);
+};
+
+interface SummaryImageProps {
+	iconName?: string;
+}
+
+const SummaryImage: FC<SummaryImageProps> = ({ iconName }) => {
+	return (
+		<>
+			{iconName ? (
+				<div id="iconName">
+					<ForecastImage
+						icon={`/weather-icons/${iconName}.png`}
+						alt={`For the next hour it should be ${iconName}.`}
+						width={120}
+						height={120}
+					/>
+				</div>
+			) : (
+				<CgUnavailable className="size-28" />
+			)}
 		</>
 	);
 };
