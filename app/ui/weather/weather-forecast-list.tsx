@@ -1,5 +1,3 @@
-"use client";
-
 import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
 import { formatISOToHoursAndMinutes } from "@/app/lib/time/time";
 import WeatherForecastListItem from "@/app/ui/weather/weather-forecast-list-item";
