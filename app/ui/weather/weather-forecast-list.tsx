@@ -8,10 +8,10 @@ const WeatherForecastList = () => {
 
 	if (!context) throw new Error("Context cannot be undefined.");
 
-	const points = context?.properties.timeseries.slice(0, 12);
+	const points = context?.properties.timeseries.slice(0, 8);
 
 	return (
-		<section id="forecast-hourly-list" className="mt-10">
+		<section id="forecast-hourly-list" className="my-10 mx-auto">
 			{points.map((point, i) => {
 				const time = formatISOToHoursAndMinutes(point.time);
 

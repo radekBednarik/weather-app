@@ -15,10 +15,13 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 	temperature,
 }) => {
 	return (
-		<div className="flex flex-row justify-between items-center px-4 border shadow-md rounded-md mb-2">
-			<div id="time">{time}</div>
-
+		<div className="flex flex-row justify-start gap-10 items-center p-4 border-b mb-2">
+			<div id="time" className="text-5xl">
+				{time}
+			</div>
+			<VerticalSplitter />
 			<SummaryImage iconName={iconName} />
+			<VerticalSplitter />
 			<Temperature temperature={temperature} />
 		</div>
 	);
@@ -34,13 +37,16 @@ const Temperature: FC<TemperatureProps> = ({ temperature }) => {
 	return (
 		<>
 			{temperature ? (
-				<div id="temperature" className="flex flex-row items-center">
+				<div
+					id="temperature"
+					className="flex flex-row items-center justify-start"
+				>
 					<WiThermometer className="size-28" />
-					<span className="text-5xl">{temperature.toFixed(1)}</span>
+					<span className="text-5xl -m-4">{temperature.toFixed(1)}</span>
 				</div>
 			) : (
 				<CgUnavailable />
-			)}{" "}
+			)}
 		</>
 	);
 };
@@ -66,4 +72,8 @@ const SummaryImage: FC<SummaryImageProps> = ({ iconName }) => {
 			)}
 		</>
 	);
+};
+
+const VerticalSplitter = () => {
+	return <div className="text-5xl">|</div>;
 };
