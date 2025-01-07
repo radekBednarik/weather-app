@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { WeatherForecastProvider } from "@/app/contexts/weather-data-context";
-import ForecastIcon from "@/app/ui/forecast-icon";
 import Header from "@/app/ui/header/header";
+import HeaderForecastSummaryIcon from "@/app/ui/icons/header-forecast-summary-icon";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -32,7 +32,7 @@ export default function RootLayout({
 			>
 				<Header />
 				<WeatherForecastProvider>
-					<ForecastIcon />
+					<HeaderForecastSummaryIcon />
 					{children}
 				</WeatherForecastProvider>
 			</body>
