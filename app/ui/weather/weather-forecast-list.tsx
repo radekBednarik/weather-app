@@ -1,6 +1,7 @@
 "use client";
 
 import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
+import { formatISOToHoursAndMinutes } from "@/app/lib/time/time";
 import WeatherForecastListItem from "@/app/ui/weather/weather-forecast-list-item";
 import { useContext } from "react";
 
@@ -13,14 +14,18 @@ const WeatherForecastList = () => {
 
 	return (
 		<section id="forecast-hourly-list" className="mt-10">
-			{points.map((point, i) => (
-				<WeatherForecastListItem
-					key={i}
-					time={point.time}
-					iconName={point.data.next_1_hours?.summary.symbol_code}
-					temperature={point.data.instant.details?.air_temperature}
-				/>
-			))}
+			{points.map((point, i) => {
+				const time = formatISOToHoursAndMinutes(point.time);
+
+				return (
+					<WeatherForecastListItem
+						key={i}
+						time={time}
+						iconName={point.data.next_1_hours?.summary.symbol_code}
+						temperature={point.data.instant.details?.air_temperature}
+					/>
+				);
+			})}
 		</section>
 	);
 };

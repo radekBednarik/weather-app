@@ -1,4 +1,4 @@
-import { addHours, isWithinInterval, subHours } from "date-fns";
+import { addHours, format, isWithinInterval, subHours } from "date-fns";
 
 export function isWithinHoursInterval(
 	currentDate: string,
@@ -11,4 +11,8 @@ export function isWithinHoursInterval(
 	const result = isWithinInterval(new Date(currentDate), { start, end });
 
 	return result;
+}
+
+export function formatISOToHoursAndMinutes(time: string) {
+	return format(new Date(time), "HH:mm");
 }

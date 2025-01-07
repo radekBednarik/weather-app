@@ -22,15 +22,19 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 			className="flex flex-row justify-between items-center p-2 border shadow-md rounded-md mb-2"
 		>
 			<div id="time">{time}</div>
-			<div id="iconName">
-				<ForecastIcon
-					icon={icon}
-					alt={`For the next hour it should be ${time}.`}
-					width={120}
-					height={120}
-				/>
-			</div>
-			<div id="temperature">{temperature}</div>
+
+			{iconName ? (
+				<div id="iconName">
+					<ForecastIcon
+						icon={icon}
+						alt={`For the next hour it should be ${time}.`}
+						width={120}
+						height={120}
+					/>
+				</div>
+			) : undefined}
+
+			{temperature ? <div id="temperature">{temperature}</div> : undefined}
 		</div>
 	);
 };
