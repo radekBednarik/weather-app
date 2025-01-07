@@ -29,5 +29,5 @@ export async function POST(req: NextRequest) {
 		cache.expires = data.expires;
 	}
 
-	return NextResponse.json(cache);
+	return NextResponse.json(cache.data);
 }

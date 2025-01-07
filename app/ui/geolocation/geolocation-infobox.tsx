@@ -1,73 +1,35 @@
 "use client";
 
-import {
-	type UserGeolocation,
-	getUserLocation,
-} from "@/app/lib/location/location";
-import type { MetJsonForecast } from "@/app/lib/met-api/declarations";
-import {
-	getGeolocationDataFromSessionStorage,
-	saveForecastToSessionStorage,
-	saveGeolocationToSessionStorage,
-} from "@/app/lib/storages/browser-storage";
-import { useEffect, useState } from "react";
+import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
+import { getLocationFromForecast } from "@/app/lib/forecast/process";
+import { useContext } from "react";
 
 const GeolocationInfobox = () => {
-	const [location, setLocation] = useState<UserGeolocation>(undefined);
+	const data = useContext(WeatherForecastContext);
 
-	useEffect(() => {
-		async function fetchLoc() {
-			const geoData = getGeolocationDataFromSessionStorage();
+	if (typeof data === "undefined")
+		throw new Error("Context data cannot be undefined.");
 
-			if (!geoData) {
-				const location = await getUserLocation();
-				setLocation(location);
-				saveGeolocationToSessionStorage(location);
-				postGeodataAndStoreForecast(location);
-			} else {
-				setLocation(geoData);
-				postGeodataAndStoreForecast(geoData);
-			}
-		}
-
-		fetchLoc();
-	}, []);
+	const geo = getLocationFromForecast(data);
 
 	return (
-		<main id="geolocation-infobox">
-			{!location ? (
-				<p>Getting location...</p>
-			) : (
-				<div className="flex flex-col">
-					<p className="self-end">
-						<span className="font-semibold">Latitude: </span>
-						{location.latitude}
-					</p>
-					<p className="self-end">
-						<span className="font-semibold">Longitude: </span>
-						{location.longitude}
-					</p>
-					{!location.altitude ? (
-						""
-					) : (
-						<p className="self-end">Altitude: {location.altitude}</p>
-					)}
+		<div id="geolocation-infobox" className="inline-flex flex-col">
+			<div id="longitude" className="self-end">
+				<span className="font-semibold">Longitude: </span>
+				{geo[0]}
+			</div>
+			<div id="latitude" className="self-end">
+				<span className="font-semibold">Latitude: </span>
+				{geo[1]}
+			</div>
+			{geo[2] ? (
+				<div className="self-end">
+					<span className="font-semibold">Altitude: </span>
+					{geo[2]}
 				</div>
-			)}
-		</main>
+			) : undefined}
+		</div>
 	);
 };
 
 export default GeolocationInfobox;
-
-function postGeodataAndStoreForecast(geoData: UserGeolocation) {
-	fetch("/api/use-geolocation", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(geoData),
-	})
-		.then((response) => response.json())
-		.then((data: MetJsonForecast) => saveForecastToSessionStorage(data));
-}

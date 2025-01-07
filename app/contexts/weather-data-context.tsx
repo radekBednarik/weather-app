@@ -1,39 +1,44 @@
 "use client";
 
 import useGetForecast from "@/app/hooks/use-get-forecast";
-import React, { createContext, ReactNode, useEffect, useState } from "react";
-import { MetJsonForecast } from "../lib/met-api/declarations";
+import type { MetJsonForecast } from "@/app/lib/met-api/declarations";
 import LoadingSpinner from "@/app/ui/loading-spinner";
+import React, {
+	createContext,
+	type ReactNode,
+	useEffect,
+	useState,
+} from "react";
 
 export const WeatherForecastContext = createContext<
-  MetJsonForecast | undefined
+	MetJsonForecast | undefined
 >(undefined);
 
 export const WeatherForecastProvider = ({
-  children,
+	children,
 }: {
-  children: ReactNode;
+	children: ReactNode;
 }) => {
-  const [loading, setLoading] = useState(true);
-  const weatherData = useGetForecast();
+	const [loading, setLoading] = useState(true);
+	const weatherData = useGetForecast();
 
-  useEffect(() => {
-    if (weatherData) {
-      setLoading(false);
-    }
-  }, [weatherData]);
+	useEffect(() => {
+		if (weatherData) {
+			setLoading(false);
+		}
+	}, [weatherData]);
 
-  if (loading) {
-    return (
-      <div>
-        <LoadingSpinner />
-      </div>
-    );
-  }
+	if (loading) {
+		return (
+			<div>
+				<LoadingSpinner />
+			</div>
+		);
+	}
 
-  return (
-    <WeatherForecastContext.Provider value={weatherData}>
-      {children}
-    </WeatherForecastContext.Provider>
-  );
+	return (
+		<WeatherForecastContext.Provider value={weatherData}>
+			{children}
+		</WeatherForecastContext.Provider>
+	);
 };
