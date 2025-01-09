@@ -23,8 +23,8 @@ const HeaderForecastSummaryIcon = () => {
 			<ForecastImage
 				icon={icon}
 				alt={`For the next hour the weather should be ${iconName}`}
-				width={160}
-				height={160}
+				width={240}
+				height={240}
 			/>
 		</div>
 	);
