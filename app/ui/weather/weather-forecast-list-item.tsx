@@ -21,7 +21,7 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 }) => {
 	return (
 		<div className="flex flex-row justify-between gap-10 items-center py-4 border-b mb-2">
-			<div id="time" className="text-5xl">
+			<div id="time" className="lg:text-5xl">
 				{time}
 			</div>
 			<VerticalSplitter />
@@ -50,13 +50,13 @@ const Windspeed: FC<WindSpeedProps> = ({ amount }) => {
 					id="wind-speed-amount"
 					className="flex flex-row items-center justify-start"
 				>
-					<WiStrongWind className="lg:size-28" />
-					<span className="text-5xl">{amount.toFixed(1)}</span>
+					<WiStrongWind className="size-14 lg:size-28" />
+					<span className="lg:text-5xl">{amount.toFixed(1)}</span>
 				</div>
 			) : (
 				<div className="flex flex-row items-center justify-start">
-					<WiStrongWind className="size-28" />
-					<span className="text-5xl">{(0).toFixed(1)}</span>
+					<WiStrongWind className="size-14 lg:size-28" />
+					<span className="lg:text-5xl">{(0).toFixed(1)}</span>
 				</div>
 			)}
 		</div>
@@ -75,13 +75,13 @@ const Precipitation: FC<PrecipitationProps> = ({ amount }) => {
 					id="precipitation_amount"
 					className="flex flex-row items-center justify-start"
 				>
-					<WiRaindrops className="size-28" />
-					<span className="text-5xl -m-4">{amount.toFixed(1)}</span>
+					<WiRaindrops className="size-14 lg:size-28" />
+					<span className="lg:text-5xl -m-4">{amount.toFixed(1)}</span>
 				</div>
 			) : (
 				<div className="flex flex-row items-center justify-start">
-					<WiRaindrops className="size-28" />
-					<span className="text-5xl -m-4">{(0).toFixed(1)}</span>
+					<WiRaindrops className="size-14 lg:size-28" />
+					<span className="lg:text-5xl -m-4">{(0).toFixed(1)}</span>
 				</div>
 			)}
 		</div>
@@ -100,11 +100,11 @@ const Temperature: FC<TemperatureProps> = ({ temperature }) => {
 					id="temperature"
 					className="flex flex-row items-center justify-start"
 				>
-					<WiThermometer className="size-28" />
-					<span className="text-5xl">{temperature.toFixed(1)}</span>
+					<WiThermometer className="size-14 lg:size-28" />
+					<span className="lg:text-5xl">{temperature.toFixed(1)}</span>
 				</div>
 			) : (
-				<CgUnavailable className="size-28" />
+				<CgUnavailable className="size-14 lg:size-28" />
 			)}
 		</div>
 	);
@@ -118,7 +118,7 @@ const SummaryImage: FC<SummaryImageProps> = ({ iconName }) => {
 	return (
 		<div>
 			{iconName ? (
-				<div id="iconName">
+				<div id="iconName" className="size-14 lg:size-28">
 					<ForecastImage
 						icon={`/weather-icons/${iconName}.png`}
 						alt={`For the next hour it should be ${iconName}.`}
@@ -127,7 +127,7 @@ const SummaryImage: FC<SummaryImageProps> = ({ iconName }) => {
 					/>
 				</div>
 			) : (
-				<CgUnavailable className="size-28" />
+				<CgUnavailable className="size-14 lg:size-28" />
 			)}
 		</div>
 	);
@@ -138,5 +138,5 @@ interface VerticalSplitterProps {
 }
 
 const VerticalSplitter: FC<VerticalSplitterProps> = ({ className }) => {
-	return <div className={clsx("text-5xl", className)}>|</div>;
+	return <div className={clsx("lg:text-5xl", className)}>|</div>;
 };
