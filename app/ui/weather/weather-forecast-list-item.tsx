@@ -1,20 +1,22 @@
 import type { FC } from "react";
 import { CgUnavailable } from "react-icons/cg";
-import { WiRaindrops, WiThermometer } from "react-icons/wi";
+import { WiRaindrops, WiStrongWind, WiThermometer } from "react-icons/wi";
 import ForecastImage from "../images/forecast-image";
 
 interface WeatherForecastListItemProps {
 	time: string;
 	iconName?: string;
 	temperature?: number;
-	precipitation_amount?: number;
+	precipitationAmount?: number;
+	windSpeed?: number;
 }
 
 const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 	time,
 	iconName,
 	temperature,
-	precipitation_amount,
+	precipitationAmount,
+	windSpeed,
 }) => {
 	return (
 		<div className="flex flex-row justify-start gap-10 items-center p-4 border-b mb-2">
@@ -26,12 +28,39 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 			<VerticalSplitter />
 			<Temperature temperature={temperature} />
 			<VerticalSplitter />
-			<Precipitation amount={precipitation_amount} />
+			<Precipitation amount={precipitationAmount} />
+			<VerticalSplitter />
+			<Windspeed amount={windSpeed} />
 		</div>
 	);
 };
 
 export default WeatherForecastListItem;
+
+interface WindSpeedProps {
+	amount?: number;
+}
+
+const Windspeed: FC<WindSpeedProps> = ({ amount }) => {
+	return (
+		<>
+			{amount ? (
+				<div
+					id="wind-speed-amount"
+					className="flex flex-row items-center justify-start"
+				>
+					<WiStrongWind className="size-28" />
+					<span className="text-5xl">{amount.toFixed(1)}</span>
+				</div>
+			) : (
+				<div className="flex flex-row items-center justify-start">
+					<WiStrongWind className="size-28" />
+					<span className="text-5xl">{(0).toFixed(1)}</span>
+				</div>
+			)}
+		</>
+	);
+};
 
 interface PrecipitationProps {
 	amount?: number;

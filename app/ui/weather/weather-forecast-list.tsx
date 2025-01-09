@@ -21,9 +21,10 @@ const WeatherForecastList = () => {
 						time={time}
 						iconName={point.data.next_1_hours?.summary.symbol_code}
 						temperature={point.data.instant.details?.air_temperature}
-						precipitation_amount={
+						precipitationAmount={
 							point.data.next_1_hours?.details.precipitation_amount
 						}
+						windSpeed={point.data.instant.details?.wind_speed}
 					/>
 				);
 			})}
