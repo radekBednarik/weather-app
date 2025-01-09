@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { FC } from "react";
 import { CgUnavailable } from "react-icons/cg";
 import { WiRaindrops, WiStrongWind, WiThermometer } from "react-icons/wi";
@@ -27,9 +28,9 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 			<SummaryImage iconName={iconName} />
 			<VerticalSplitter />
 			<Temperature temperature={temperature} />
-			<VerticalSplitter />
+			<VerticalSplitter className="hidden md:block" />
 			<Precipitation amount={precipitationAmount} />
-			<VerticalSplitter />
+			<VerticalSplitter className="hidden lg:block" />
 			<Windspeed amount={windSpeed} />
 		</div>
 	);
@@ -43,13 +44,13 @@ interface WindSpeedProps {
 
 const Windspeed: FC<WindSpeedProps> = ({ amount }) => {
 	return (
-		<>
+		<div className="hidden lg:block">
 			{amount ? (
 				<div
 					id="wind-speed-amount"
 					className="flex flex-row items-center justify-start"
 				>
-					<WiStrongWind className="size-28" />
+					<WiStrongWind className="lg:size-28" />
 					<span className="text-5xl">{amount.toFixed(1)}</span>
 				</div>
 			) : (
@@ -58,7 +59,7 @@ const Windspeed: FC<WindSpeedProps> = ({ amount }) => {
 					<span className="text-5xl">{(0).toFixed(1)}</span>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };
 
@@ -68,7 +69,7 @@ interface PrecipitationProps {
 
 const Precipitation: FC<PrecipitationProps> = ({ amount }) => {
 	return (
-		<>
+		<div className="hidden md:block">
 			{amount ? (
 				<div
 					id="precipitation_amount"
@@ -83,7 +84,7 @@ const Precipitation: FC<PrecipitationProps> = ({ amount }) => {
 					<span className="text-5xl -m-4">{(0).toFixed(1)}</span>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };
 
@@ -93,7 +94,7 @@ interface TemperatureProps {
 
 const Temperature: FC<TemperatureProps> = ({ temperature }) => {
 	return (
-		<>
+		<div>
 			{temperature ? (
 				<div
 					id="temperature"
@@ -105,7 +106,7 @@ const Temperature: FC<TemperatureProps> = ({ temperature }) => {
 			) : (
 				<CgUnavailable className="size-28" />
 			)}
-		</>
+		</div>
 	);
 };
 
@@ -115,7 +116,7 @@ interface SummaryImageProps {
 
 const SummaryImage: FC<SummaryImageProps> = ({ iconName }) => {
 	return (
-		<>
+		<div>
 			{iconName ? (
 				<div id="iconName">
 					<ForecastImage
@@ -128,10 +129,14 @@ const SummaryImage: FC<SummaryImageProps> = ({ iconName }) => {
 			) : (
 				<CgUnavailable className="size-28" />
 			)}
-		</>
+		</div>
 	);
 };
 
-const VerticalSplitter = () => {
-	return <div className="text-5xl">|</div>;
+interface VerticalSplitterProps {
+	className?: string;
+}
+
+const VerticalSplitter: FC<VerticalSplitterProps> = ({ className }) => {
+	return <div className={clsx("text-5xl", className)}>|</div>;
 };
