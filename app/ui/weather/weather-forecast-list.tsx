@@ -1,14 +1,25 @@
 import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
 import { formatISOToHoursAndMinutes } from "@/app/lib/time/time";
 import WeatherForecastListItem from "@/app/ui/weather/weather-forecast-list-item";
-import { useContext } from "react";
+import { type FC, useContext } from "react";
 
-const WeatherForecastList = () => {
+interface WeatherForecastListProps {
+	itemsIndexStart: number;
+	itemsIndexEnd: number;
+}
+
+const WeatherForecastList: FC<WeatherForecastListProps> = ({
+	itemsIndexStart,
+	itemsIndexEnd,
+}) => {
 	const context = useContext(WeatherForecastContext);
 
 	if (!context) throw new Error("Context cannot be undefined.");
 
-	const points = context?.properties.timeseries.slice(0, 8);
+	const points = context?.properties.timeseries.slice(
+		itemsIndexStart,
+		itemsIndexEnd,
+	);
 
 	return (
 		<section id="forecast-hourly-list" className="my-10 mx-auto">

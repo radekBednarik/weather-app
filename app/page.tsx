@@ -14,7 +14,7 @@ export default function Home() {
 	return (
 		<main className="flex flex-col mt-10">
 			<GeolocationInfobox />
-			<WeatherForecastList />
+			<WeatherForecastList itemsIndexStart={0} itemsIndexEnd={8} />
 		</main>
 	);
 }
