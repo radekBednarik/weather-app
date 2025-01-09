@@ -1,18 +1,20 @@
 import type { FC } from "react";
 import { CgUnavailable } from "react-icons/cg";
-import { WiThermometer } from "react-icons/wi";
+import { WiRaindrops, WiThermometer } from "react-icons/wi";
 import ForecastImage from "../images/forecast-image";
 
 interface WeatherForecastListItemProps {
 	time: string;
 	iconName?: string;
 	temperature?: number;
+	precipitation_amount?: number;
 }
 
 const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 	time,
 	iconName,
 	temperature,
+	precipitation_amount,
 }) => {
 	return (
 		<div className="flex flex-row justify-start gap-10 items-center p-4 border-b mb-2">
@@ -23,11 +25,38 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 			<SummaryImage iconName={iconName} />
 			<VerticalSplitter />
 			<Temperature temperature={temperature} />
+			<VerticalSplitter />
+			<Precipitation amount={precipitation_amount} />
 		</div>
 	);
 };
 
 export default WeatherForecastListItem;
+
+interface PrecipitationProps {
+	amount?: number;
+}
+
+const Precipitation: FC<PrecipitationProps> = ({ amount }) => {
+	return (
+		<>
+			{amount ? (
+				<div
+					id="precipitation_amount"
+					className="flex flex-row items-center justify-start"
+				>
+					<WiRaindrops className="size-28" />
+					<span className="text-5xl -m-4">{amount.toFixed(1)}</span>
+				</div>
+			) : (
+				<div className="flex flex-row items-center justify-start">
+					<WiRaindrops className="size-28" />
+					<span className="text-5xl -m-4">{(0).toFixed(1)}</span>
+				</div>
+			)}
+		</>
+	);
+};
 
 interface TemperatureProps {
 	temperature?: number;
@@ -42,10 +71,10 @@ const Temperature: FC<TemperatureProps> = ({ temperature }) => {
 					className="flex flex-row items-center justify-start"
 				>
 					<WiThermometer className="size-28" />
-					<span className="text-5xl -m-4">{temperature.toFixed(1)}</span>
+					<span className="text-5xl">{temperature.toFixed(1)}</span>
 				</div>
 			) : (
-				<CgUnavailable />
+				<CgUnavailable className="size-28" />
 			)}
 		</>
 	);
