@@ -6,6 +6,8 @@ interface ForecastImageProps {
 	alt: string;
 	width: number;
 	height: number;
+	className?: string;
+	sizes?: string;
 }
 
 const ForecastImage: FC<ForecastImageProps> = ({
@@ -13,10 +15,20 @@ const ForecastImage: FC<ForecastImageProps> = ({
 	alt,
 	width,
 	height,
+	className,
+	sizes,
 }) => {
 	return (
 		<div id="forecast-icon">
-			<Image src={icon} width={width} height={height} alt={alt} />
+			<Image
+				src={icon}
+				width={width}
+				height={height}
+				alt={alt}
+				layout="responsive"
+				className={className}
+				sizes={sizes}
+			/>
 		</div>
 	);
 };

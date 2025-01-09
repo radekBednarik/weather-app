@@ -100,7 +100,7 @@ const Temperature: FC<TemperatureProps> = ({ temperature }) => {
 					id="temperature"
 					className="flex flex-row items-center justify-start"
 				>
-					<WiThermometer className="size-14 lg:size-28" />
+					<WiThermometer className="size-14 lg:size-20" />
 					<span className="lg:text-5xl">{temperature.toFixed(1)}</span>
 				</div>
 			) : (
@@ -118,12 +118,12 @@ const SummaryImage: FC<SummaryImageProps> = ({ iconName }) => {
 	return (
 		<div>
 			{iconName ? (
-				<div id="iconName" className="size-14 lg:size-28">
+				<div id="iconName">
 					<ForecastImage
 						icon={`/weather-icons/${iconName}.png`}
 						alt={`For the next hour it should be ${iconName}.`}
-						width={120}
-						height={120}
+						width={240}
+						height={240}
 					/>
 				</div>
 			) : (

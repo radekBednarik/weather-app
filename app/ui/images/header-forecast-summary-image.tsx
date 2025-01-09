@@ -19,7 +19,10 @@ const HeaderForecastSummaryIcon = () => {
 	const icon = iconName ? `/weather-icons/${iconName}.png` : defaultIcon;
 
 	return (
-		<div id="forecast-summary-icon" className="absolute top-0 left-0">
+		<div
+			id="forecast-summary-icon"
+			className="absolute top-0 left-0 w-fit sm:w-1/6"
+		>
 			<ForecastImage
 				icon={icon}
 				alt={`For the next hour the weather should be ${iconName}`}
