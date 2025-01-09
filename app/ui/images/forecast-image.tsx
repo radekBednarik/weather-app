@@ -25,7 +25,6 @@ const ForecastImage: FC<ForecastImageProps> = ({
 				width={width}
 				height={height}
 				alt={alt}
-				layout="responsive"
 				className={className}
 				sizes={sizes}
 			/>
