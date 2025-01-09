@@ -19,7 +19,7 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 	windSpeed,
 }) => {
 	return (
-		<div className="flex flex-row justify-start gap-10 items-center p-4 border-b mb-2">
+		<div className="flex flex-row justify-between gap-10 items-center py-4 border-b mb-2">
 			<div id="time" className="text-5xl">
 				{time}
 			</div>
