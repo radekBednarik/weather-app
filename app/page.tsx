@@ -13,7 +13,9 @@ export default function Page({
 }: {
 	searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-	const p = use(searchParams).page;
+	const query = use(searchParams);
+	const p = query.page;
+	console.log("P :", p);
 	const page = Number.parseInt(p ? p : "1");
 	const startIndex = itemsPerPage * (page - 1);
 	const endIndex = startIndex + itemsPerPage;
