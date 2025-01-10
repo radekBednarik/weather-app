@@ -44,7 +44,7 @@ interface WindSpeedProps {
 
 const Windspeed: FC<WindSpeedProps> = ({ amount }) => {
 	return (
-		<div className="hidden lg:block">
+		<div className="hidden lg:block flex-row justify-center">
 			{amount ? (
 				<div
 					id="wind-speed-amount"
@@ -69,7 +69,7 @@ interface PrecipitationProps {
 
 const Precipitation: FC<PrecipitationProps> = ({ amount }) => {
 	return (
-		<div className="hidden md:block">
+		<div className="hidden md:block flex-row justify-center">
 			{amount ? (
 				<div
 					id="precipitation_amount"
@@ -94,7 +94,7 @@ interface TemperatureProps {
 
 const Temperature: FC<TemperatureProps> = ({ temperature }) => {
 	return (
-		<div>
+		<div className="flex flex-row justify-center">
 			{temperature ? (
 				<div
 					id="temperature"
@@ -116,9 +116,9 @@ interface SummaryImageProps {
 
 const SummaryImage: FC<SummaryImageProps> = ({ iconName }) => {
 	return (
-		<div>
+		<div className="flex flex-row justify-center">
 			{iconName ? (
-				<div id="iconName">
+				<div id="iconName" className="sm:w-1/6 md:w-2/6 lg:w-3/6">
 					<ForecastImage
 						icon={`/weather-icons/${iconName}.png`}
 						alt={`For the next hour it should be ${iconName}.`}
