@@ -14,7 +14,7 @@ export const WeatherForecastContext = createContext<
 	MetJsonForecast | undefined
 >(undefined);
 
-export const WeatherForecastProvider = ({
+const WeatherForecastProvider = ({
 	children,
 }: {
 	children: ReactNode;
@@ -42,3 +42,5 @@ export const WeatherForecastProvider = ({
 		</WeatherForecastContext.Provider>
 	);
 };
+
+export default WeatherForecastProvider;
