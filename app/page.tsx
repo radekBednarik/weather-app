@@ -4,18 +4,14 @@ import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
 import GeolocationInfobox from "@/app/ui/geolocation/geolocation-infobox";
 import Pagination from "@/app/ui/pagination/pagination";
 import WeatherForecastList from "@/app/ui/weather/weather-forecast-list";
-import { use, useContext } from "react";
+import { useSearchParams } from "next/navigation";
+import { useContext } from "react";
 
 const itemsPerPage = 5;
 
-export default function Page({
-	searchParams,
-}: {
-	searchParams: Promise<{ [key: string]: string | undefined }>;
-}) {
-	const query = use(searchParams);
-	const p = query.page;
-	console.log("P :", p);
+export default function Page() {
+	const query = useSearchParams();
+	const p = query.get("page");
 	const page = Number.parseInt(p ? p : "1");
 	const startIndex = itemsPerPage * (page - 1);
 	const endIndex = startIndex + itemsPerPage;
