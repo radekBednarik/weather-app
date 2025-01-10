@@ -25,12 +25,20 @@ const Pagination: FC<PaginationProps> = ({
 			id="pagination"
 			className="flex flex-row items-center justify-around my-10"
 		>
-			<Link href={`/?page=${prevPage}`} className="hover:text-blue-500">
+			<Link
+				href={`/?page=${prevPage}`}
+				className="hover:text-blue-500"
+				aria-label={`Navigate to ${prevPage} page.`}
+			>
 				<FaArrowLeft className="md:text-5xl" />
 			</Link>
 
 			<div className="border rounded-lg p-2 md:text-4xl">{currentPage}</div>
-			<Link href={`/?page=${nextpage}`} className="hover:text-blue-500">
+			<Link
+				href={`/?page=${nextpage}`}
+				className="hover:text-blue-500"
+				aria-label={`Navigate to ${nextpage} page.`}
+			>
 				<FaArrowRight className="md:text-5xl" />
 			</Link>
 		</div>
