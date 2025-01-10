@@ -51,12 +51,12 @@ const Windspeed: FC<WindSpeedProps> = ({ amount }) => {
 					className="flex flex-row items-center justify-start"
 				>
 					<WiStrongWind className="size-14 lg:size-28" />
-					<span className="lg:text-5xl">{amount.toFixed(1)}</span>
+					<span className="lg:text-5xl">{amount.toFixed(1)} m/s</span>
 				</div>
 			) : (
 				<div className="flex flex-row items-center justify-start">
 					<WiStrongWind className="size-14 lg:size-28" />
-					<span className="lg:text-5xl">{(0).toFixed(1)}</span>
+					<span className="lg:text-5xl">{(0).toFixed(1)} m/s</span>
 				</div>
 			)}
 		</div>
@@ -76,12 +76,12 @@ const Precipitation: FC<PrecipitationProps> = ({ amount }) => {
 					className="flex flex-row items-center justify-start"
 				>
 					<WiRaindrops className="size-14 lg:size-28" />
-					<span className="lg:text-5xl -m-4">{amount.toFixed(1)}</span>
+					<span className="lg:text-5xl -m-4">{amount.toFixed(1)} mm</span>
 				</div>
 			) : (
 				<div className="flex flex-row items-center justify-start">
 					<WiRaindrops className="size-14 lg:size-28" />
-					<span className="lg:text-5xl -m-4">{(0).toFixed(1)}</span>
+					<span className="lg:text-5xl -m-4">{(0).toFixed(1)} mm</span>
 				</div>
 			)}
 		</div>
@@ -101,7 +101,7 @@ const Temperature: FC<TemperatureProps> = ({ temperature }) => {
 					className="flex flex-row items-center justify-start"
 				>
 					<WiThermometer className="size-14 lg:size-20" />
-					<span className="lg:text-5xl">{temperature.toFixed(1)}</span>
+					<span className="lg:text-5xl">{temperature.toFixed(1)} &deg;C</span>
 				</div>
 			) : (
 				<CgUnavailable className="size-14 lg:size-28" />
