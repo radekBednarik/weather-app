@@ -8,7 +8,7 @@ import { type FC, use, useContext } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import type { MetJsonForecast } from "./lib/met-api/declarations";
 
-const itemsPerPage = 6;
+const itemsPerPage = 5;
 
 export default function Home({
 	searchParams,
