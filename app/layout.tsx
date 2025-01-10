@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { WeatherForecastProvider } from "@/app/contexts/weather-data-context";
+import WeatherForecastProvider from "@/app/contexts/weather-data-context";
 import Header from "@/app/ui/header/header";
 import HeaderForecastSummaryIcon from "@/app/ui/images/header-forecast-summary-image";
 
