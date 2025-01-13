@@ -51,7 +51,9 @@ const WeatherForecastList: FC<WeatherForecastListProps> = ({
               formatIsoToDate(arr[i - 1].time) !==
                 formatIsoToDate(point.time) ? (
               <ForecastPointDate date={uniqueDates[1]} key={nanoid()} />
-            ) : undefined}
+            ) : (
+              <div key={nanoid()}></div>
+            )}
             <WeatherForecastListItem
               key={nanoid()}
               time={time}
