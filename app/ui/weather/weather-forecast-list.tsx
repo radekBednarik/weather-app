@@ -2,7 +2,9 @@ import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
 import { formatISOToHoursAndMinutes } from "@/app/lib/time/time";
 import WeatherForecastListItem from "@/app/ui/weather/weather-forecast-list-item";
 import { format } from "date-fns";
+import ForecastPointDate from "@/app/ui/dates/forecast-point-date";
 import { type FC, useContext } from "react";
+import { nanoid } from "nanoid";
 
 interface WeatherForecastListProps {
   itemsIndexStart: number;
@@ -36,24 +38,31 @@ const WeatherForecastList: FC<WeatherForecastListProps> = ({
     }
   });
 
-  console.log(uniqueDates);
-
   return (
     <section id="forecast-hourly-list" className="my-10 mx-auto">
-      {points.map((point, i) => {
+      {points.map((point, i, arr) => {
         const time = formatISOToHoursAndMinutes(point.time);
 
         return (
-          <WeatherForecastListItem
-            key={i}
-            time={time}
-            iconName={point.data.next_1_hours?.summary.symbol_code}
-            temperature={point.data.instant.details?.air_temperature}
-            precipitationAmount={
-              point.data.next_1_hours?.details.precipitation_amount
-            }
-            windSpeed={point.data.instant.details?.wind_speed}
-          />
+          <>
+            {i === 0 ? (
+              <ForecastPointDate date={uniqueDates[0]} key={nanoid()} />
+            ) : formatIsoToDate(point.time) === uniqueDates[1] &&
+              formatIsoToDate(arr[i - 1].time) !==
+                formatIsoToDate(point.time) ? (
+              <ForecastPointDate date={uniqueDates[1]} key={nanoid()} />
+            ) : undefined}
+            <WeatherForecastListItem
+              key={nanoid()}
+              time={time}
+              iconName={point.data.next_1_hours?.summary.symbol_code}
+              temperature={point.data.instant.details?.air_temperature}
+              precipitationAmount={
+                point.data.next_1_hours?.details.precipitation_amount
+              }
+              windSpeed={point.data.instant.details?.wind_speed}
+            />
+          </>
         );
       })}
     </section>
