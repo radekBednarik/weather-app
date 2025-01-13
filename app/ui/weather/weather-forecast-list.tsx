@@ -3,8 +3,7 @@ import { formatISOToHoursAndMinutes } from "@/app/lib/time/time";
 import WeatherForecastListItem from "@/app/ui/weather/weather-forecast-list-item";
 import { format } from "date-fns";
 import ForecastPointDate from "@/app/ui/dates/forecast-point-date";
-import { type FC, useContext } from "react";
-import { nanoid } from "nanoid";
+import { type FC, Fragment, useContext } from "react";
 
 interface WeatherForecastListProps {
   itemsIndexStart: number;
@@ -44,18 +43,18 @@ const WeatherForecastList: FC<WeatherForecastListProps> = ({
         const time = formatISOToHoursAndMinutes(point.time);
 
         return (
-          <>
+          <Fragment key={i + 4}>
             {i === 0 ? (
-              <ForecastPointDate date={uniqueDates[0]} key={nanoid()} />
+              <ForecastPointDate date={uniqueDates[0]} key={i + 1} />
             ) : formatIsoToDate(point.time) === uniqueDates[1] &&
               formatIsoToDate(arr[i - 1].time) !==
                 formatIsoToDate(point.time) ? (
-              <ForecastPointDate date={uniqueDates[1]} key={nanoid()} />
+              <ForecastPointDate date={uniqueDates[1]} key={i + 2} />
             ) : (
-              <div key={nanoid()}></div>
+              <div key={i + 3}></div>
             )}
             <WeatherForecastListItem
-              key={nanoid()}
+              key={i}
               time={time}
               iconName={point.data.next_1_hours?.summary.symbol_code}
               temperature={point.data.instant.details?.air_temperature}
@@ -64,7 +63,7 @@ const WeatherForecastList: FC<WeatherForecastListProps> = ({
               }
               windSpeed={point.data.instant.details?.wind_speed}
             />
-          </>
+          </Fragment>
         );
       })}
     </section>
