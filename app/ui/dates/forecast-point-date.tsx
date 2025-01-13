@@ -8,7 +8,7 @@ const ForecastPointDate: FC<ForecastPointDateProps> = ({ date }) => {
   return (
     <div
       id={`forecast-point-date-${date}`}
-      className="flex flex-row justify-center items-center lg:text-5xl"
+      className="flex flex-row justify-center items-center lg:text-5xl my-10"
     >
       {date}
     </div>
