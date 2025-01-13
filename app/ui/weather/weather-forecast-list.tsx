@@ -1,6 +1,7 @@
 import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
 import { formatISOToHoursAndMinutes } from "@/app/lib/time/time";
 import WeatherForecastListItem from "@/app/ui/weather/weather-forecast-list-item";
+import { format } from "date-fns";
 import { type FC, useContext } from "react";
 
 interface WeatherForecastListProps {
@@ -20,6 +21,23 @@ const WeatherForecastList: FC<WeatherForecastListProps> = ({
     itemsIndexStart,
     itemsIndexEnd,
   );
+
+  const uniqueDates: string[] = [];
+
+  points.forEach((point, i, arr) => {
+    if (i === 0) {
+      uniqueDates.push(formatIsoToDate(point.time));
+    }
+
+    if (
+      i > 0 &&
+      formatIsoToDate(point.time) !== formatIsoToDate(arr[i - 1].time)
+    ) {
+      uniqueDates.push(formatIsoToDate(point.time));
+    }
+  });
+
+  console.log(uniqueDates);
 
   return (
     <section id="forecast-hourly-list" className="my-10 mx-auto">
@@ -42,5 +60,9 @@ const WeatherForecastList: FC<WeatherForecastListProps> = ({
     </section>
   );
 };
+
+function formatIsoToDate(isoString: string) {
+  return format(new Date(isoString), "yyyy-LL-dd");
+}
 
 export default WeatherForecastList;
