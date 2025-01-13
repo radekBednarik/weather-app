@@ -25,15 +25,14 @@ const WeatherForecastList: FC<WeatherForecastListProps> = ({
   const uniqueDates: string[] = [];
 
   points.forEach((point, i, arr) => {
+    const pointDate = formatIsoToDate(point.time);
+
     if (i === 0) {
-      uniqueDates.push(formatIsoToDate(point.time));
+      uniqueDates.push(pointDate);
     }
 
-    if (
-      i > 0 &&
-      formatIsoToDate(point.time) !== formatIsoToDate(arr[i - 1].time)
-    ) {
-      uniqueDates.push(formatIsoToDate(point.time));
+    if (i > 0 && pointDate !== formatIsoToDate(arr[i - 1].time)) {
+      uniqueDates.push(pointDate);
     }
   });
 
