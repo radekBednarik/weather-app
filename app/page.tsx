@@ -10,28 +10,28 @@ import { useContext } from "react";
 const itemsPerPage = 5;
 
 export default function Page() {
-	const query = useSearchParams();
-	const p = query.get("page");
-	const page = Number.parseInt(p ? p : "1");
-	const startIndex = itemsPerPage * (page - 1);
-	const endIndex = startIndex + itemsPerPage;
+  const query = useSearchParams();
+  const p = query.get("page");
+  const page = Number.parseInt(p ? p : "1");
+  const startIndex = itemsPerPage * (page - 1);
+  const endIndex = startIndex + itemsPerPage;
 
-	const context = useContext(WeatherForecastContext);
+  const context = useContext(WeatherForecastContext);
 
-	if (!context) throw new Error("Context cannot be undefined.");
+  if (!context) throw new Error("Context cannot be undefined.");
 
-	return (
-		<main className="flex flex-col mt-10">
-			<GeolocationInfobox />
-			<WeatherForecastList
-				itemsIndexStart={startIndex}
-				itemsIndexEnd={endIndex}
-			/>
-			<Pagination
-				currentPage={page}
-				context={context}
-				itemsPerPage={itemsPerPage}
-			/>
-		</main>
-	);
+  return (
+    <main className="flex flex-col mt-10">
+      <GeolocationInfobox />
+      <WeatherForecastList
+        itemsIndexStart={startIndex}
+        itemsIndexEnd={endIndex}
+      />
+      <Pagination
+        currentPage={page}
+        context={context}
+        itemsPerPage={itemsPerPage}
+      />
+    </main>
+  );
 }
