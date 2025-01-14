@@ -11,11 +11,11 @@ const ForecastPointDate: FC<ForecastPointDateProps> = ({ date }) => {
     <div
       id={`forecast-point-date-${date}`}
       className={cn(
-        "flex flex-row justify-center items-center lg:text-5xl my-10",
+        "flex flex-row justify-center items-center lg:text-5xl my-10 text-teal-500",
         `${robotoCondensedSemiBold.className}`,
       )}
     >
-      {date}
+      - {date} -
     </div>
   );
 };

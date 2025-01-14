@@ -20,8 +20,8 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
   windSpeed,
 }) => {
   return (
-    <div className="flex flex-row justify-between gap-10 items-center py-4 border-b mb-2">
-      <div id="time" className="lg:text-5xl">
+    <div className="flex flex-row justify-between gap-10 items-center py-4 border-b border-b-slate-500 mb-2">
+      <div id="time" className="lg:text-5xl font-extrabold text-teal-500">
         {time}
       </div>
       <VerticalSplitter />
