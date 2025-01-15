@@ -1,5 +1,8 @@
 import type { MetJsonForecast } from "@/app/lib/met-api/declarations";
-import { isWithinHoursInterval } from "@/app/lib/time/time";
+import {
+	formatISOToMonthDayHoursMinutes,
+	isWithinHoursInterval,
+} from "@/app/lib/time/time";
 
 export function getSpecificTimepointForecast(
 	data: MetJsonForecast,
@@ -30,4 +33,25 @@ export function getSpecificTimepointForecast(
 
 export function getLocationFromForecast(data: MetJsonForecast) {
 	return data.geometry.coordinates;
+}
+
+export function getTemperatureForecastTimeSeries(data: MetJsonForecast) {
+	const points = data.properties.timeseries;
+	const output = points.map((point) => {
+		const temp = point.data.instant.details?.air_temperature;
+		return {
+			time: formatISOToMonthDayHoursMinutes(point.time),
+			temperature: temp ? temp.toFixed(1) : (0).toFixed(1),
+		};
+	});
+
+	return output;
+}
+
+export function getMinimumAndMaximumValue(data: Record<string, string>[]) {
+	const values = data.map((obj) => {
+		return Number.parseFloat(Object.values(obj)[1]);
+	});
+
+	return { min: Math.min(...values), max: Math.max(...values) };
 }
