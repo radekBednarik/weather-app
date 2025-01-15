@@ -14,7 +14,7 @@ export default function Page() {
 
   return (
     <>
-      <CustomLineChart heading="Windspeed forecast" data={data} />
+      <CustomLineChart heading="Windspeed forecast" data={data} units="m/s" />
     </>
   );
 }

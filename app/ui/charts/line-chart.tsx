@@ -14,9 +14,16 @@ import { getMinimumAndMaximumValue } from "@/app/lib/forecast/process";
 interface CustomLineChartProps {
   heading: string;
   data: Record<string, string>[];
+  units: string;
+  refLineYVal?: number;
 }
 
-const CustomLineChart: FC<CustomLineChartProps> = ({ heading, data }) => {
+const CustomLineChart: FC<CustomLineChartProps> = ({
+  heading,
+  data,
+  units,
+  refLineYVal,
+}) => {
   const edges = getMinimumAndMaximumValue(data);
   return (
     <div className="flex flex-col mx-auto items-center mt-36">
@@ -33,11 +40,13 @@ const CustomLineChart: FC<CustomLineChartProps> = ({ heading, data }) => {
             bottom: 5,
           }}
         >
-          <ReferenceLine y={0} />
+          <ReferenceLine
+            y={typeof refLineYVal !== "undefined" ? refLineYVal : undefined}
+          />
           <XAxis dataKey="time" />
           <YAxis
             domain={[edges.min - 1, edges.max + 1]}
-            label={{ value: "°C", position: "outsideLeft" }}
+            label={{ value: units, position: "outsideLeft" }}
             type="number"
           />
           <Tooltip

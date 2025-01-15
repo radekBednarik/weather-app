@@ -14,7 +14,12 @@ export default function Page() {
 
   return (
     <>
-      <CustomLineChart heading="Temperature forecast" data={data} />
+      <CustomLineChart
+        heading="Temperature forecast"
+        data={data}
+        units="°C"
+        refLineYVal={0}
+      />
     </>
   );
 }
