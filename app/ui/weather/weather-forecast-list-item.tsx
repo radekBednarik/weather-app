@@ -53,9 +53,17 @@ const Windspeed: FC<WindSpeedProps> = ({ amount }) => {
           className="flex flex-row items-center justify-start"
         >
           <WiStrongWind className="size-14 lg:size-28" />
-          <span className="lg:text-5xl">
+          <div className="lg:text-5xl">
             {amount.toFixed(1)} <span className="text-[0.5em]">m/s</span>
-          </span>
+          </div>
+          <div id="chart-windspeed" className="ml-4">
+            <Link
+              href="/charts/windspeed"
+              aria-label="Click to access the windspeed forecast chart."
+            >
+              <FaChartLine className="text-slate-500" />
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="flex flex-row items-center justify-start">

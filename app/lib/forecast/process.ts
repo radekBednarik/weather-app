@@ -41,7 +41,20 @@ export function getTemperatureForecastTimeSeries(data: MetJsonForecast) {
 		const temp = point.data.instant.details?.air_temperature;
 		return {
 			time: formatISOToMonthDayHoursMinutes(point.time),
-			temperature: temp ? temp.toFixed(1) : (0).toFixed(1),
+			value: temp ? temp.toFixed(1) : (0).toFixed(1),
+		};
+	});
+
+	return output;
+}
+
+export function getWindspeedForecastTimeSeries(data: MetJsonForecast) {
+	const points = data.properties.timeseries;
+	const output = points.map((point) => {
+		const speed = point.data.instant.details?.wind_speed;
+		return {
+			time: formatISOToMonthDayHoursMinutes(point.time),
+			value: speed ? speed.toFixed(1) : (0).toFixed(1),
 		};
 	});
 

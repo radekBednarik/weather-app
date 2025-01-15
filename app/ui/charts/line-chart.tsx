@@ -45,12 +45,7 @@ const CustomLineChart: FC<CustomLineChartProps> = ({ heading, data }) => {
             contentStyle={{ backgroundColor: "#64748B", border: "0" }}
           />
           <Legend />
-          <Line
-            type="monotone"
-            dataKey="temperature"
-            dot={false}
-            stroke="#14B8A6"
-          />
+          <Line type="monotone" dataKey="value" dot={false} stroke="#14B8A6" />
         </LineChart>
       </ResponsiveContainer>
     </div>
