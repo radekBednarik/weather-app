@@ -6,6 +6,7 @@ import ForecastImage from "@/app/ui/images/forecast-image";
 import { useContext } from "react";
 import defaultIcon from "../../../public/weather-icons/clearsky_day.png";
 import Link from "next/link";
+import { cn } from "@/app/lib/tailwind/utils";
 
 const HeaderForecastSummaryIcon = () => {
   const context = useContext(WeatherForecastContext);
@@ -22,7 +23,10 @@ const HeaderForecastSummaryIcon = () => {
   return (
     <div
       id="forecast-summary-icon"
-      className="absolute top-0 left-0 w-fit sm:w-1/6"
+      className={cn(
+        "absolute top-0 left-0 w-fit mobile-s:size-32 mobile-m:size-36 mobile-l:size-44",
+        "sm:size-64 2xl:size-96",
+      )}
     >
       <Link href="/" aria-label="Click the link to navigate to home page.">
         <ForecastImage
