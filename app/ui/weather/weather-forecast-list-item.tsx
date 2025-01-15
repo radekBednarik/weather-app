@@ -120,7 +120,7 @@ const Temperature: FC<TemperatureProps> = ({ temperature }) => {
               href="/charts/temperature"
               aria-label="Click to visit chart of predicted temperatures."
             >
-              <FaChartLine />
+              <FaChartLine className="text-slate-500" />
             </Link>
           </div>
         </div>
