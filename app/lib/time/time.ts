@@ -16,3 +16,7 @@ export function isWithinHoursInterval(
 export function formatISOToHoursAndMinutes(time: string) {
 	return format(new Date(time), "HH:mm");
 }
+
+export function formatISOToMonthDayHoursMinutes(time: string) {
+	return format(new Date(time), "LL.dd - HH:mm");
+}

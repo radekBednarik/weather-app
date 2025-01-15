@@ -3,6 +3,8 @@ import type { FC } from "react";
 import { CgUnavailable } from "react-icons/cg";
 import { WiRaindrops, WiStrongWind, WiThermometer } from "react-icons/wi";
 import ForecastImage from "../images/forecast-image";
+import { FaChartLine } from "react-icons/fa6";
+import Link from "next/link";
 
 interface WeatherForecastListItemProps {
   time: string;
@@ -109,10 +111,18 @@ const Temperature: FC<TemperatureProps> = ({ temperature }) => {
           className="flex flex-row items-center justify-start"
         >
           <WiThermometer className="size-14 lg:size-20" />
-          <span className="lg:text-5xl text-base">
+          <div className="lg:text-5xl text-base">
             {temperature.toFixed(1)}{" "}
             <span className="align-top text-[0.5em]">&deg; C</span>
-          </span>
+          </div>
+          <div id="chart-temp" className="ml-4">
+            <Link
+              href="/charts/temperature"
+              aria-label="Click to visit chart of predicted temperatures."
+            >
+              <FaChartLine />
+            </Link>
+          </div>
         </div>
       ) : (
         <CgUnavailable className="size-14 lg:size-20" />
