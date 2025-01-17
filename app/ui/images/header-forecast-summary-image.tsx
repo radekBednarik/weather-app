@@ -34,7 +34,6 @@ const HeaderForecastSummaryIcon = () => {
 					alt={`For the next hour the weather should be ${iconName}`}
 					width={240}
 					height={240}
-					className="animate-float"
 				/>
 			</Link>
 		</div>
