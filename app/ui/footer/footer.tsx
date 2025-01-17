@@ -6,7 +6,7 @@ const Footer = () => {
 	return (
 		<footer
 			id="footer"
-			className="flex flex-row items-center justify-end gap-4 my-4"
+			className="flex mobile-s:flex-col mobile-m:flex-row items-center justify-end gap-4 my-4"
 		>
 			<div id="met-api">
 				Data provided by{" "}
@@ -19,7 +19,7 @@ const Footer = () => {
 					MET Weather API
 				</Link>
 			</div>
-			<div className="mx-2">|</div>
+			<div className="mobile-s:hidden mobile-m:block mx-2">|</div>
 			<div id="github-repo-link">
 				<Link
 					href="https://github.com/radekBednarik/weather-app"

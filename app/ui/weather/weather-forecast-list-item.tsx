@@ -23,7 +23,10 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 }) => {
 	return (
 		<div className="flex flex-row justify-between gap-10 items-center py-4 border-b border-b-slate-500 mb-2">
-			<div id="time" className="lg:text-5xl font-extrabold text-teal-500">
+			<div
+				id="time"
+				className="lg:text-2xl 3xl:text-5xl  font-extrabold text-teal-500"
+			>
 				{time.split("-")[1].trim()}
 			</div>
 			<VerticalSplitter />
@@ -53,8 +56,8 @@ const Windspeed: FC<WindSpeedProps> = ({ amount, time }) => {
 					id="wind-speed-amount"
 					className="flex flex-row items-center justify-start"
 				>
-					<WiStrongWind className="size-14 lg:size-28" />
-					<div className="lg:text-5xl">
+					<WiStrongWind className="size-14 xl:size-28" />
+					<div className="lg:text-2xl 3xl:text-5xl lg:whitespace-nowrap xl:whitespace-normal">
 						{amount.toFixed(1)} <span className="text-[0.5em]">m/s</span>
 					</div>
 					<div id="chart-windspeed" className="ml-4">
@@ -68,8 +71,8 @@ const Windspeed: FC<WindSpeedProps> = ({ amount, time }) => {
 				</div>
 			) : (
 				<div className="flex flex-row items-center justify-start">
-					<WiStrongWind className="size-14 lg:size-28" />
-					<span className="lg:text-5xl">
+					<WiStrongWind className="size-14 xl:size-28" />
+					<span className="lg:text-5xl 3xl:text-5xl">
 						{(0).toFixed(1)} <span className="text-[0.5]">m/s</span>
 					</span>
 				</div>
@@ -91,8 +94,8 @@ const Precipitation: FC<PrecipitationProps> = ({ amount, time }) => {
 					id="precipitation_amount"
 					className="flex flex-row items-center justify-start"
 				>
-					<WiRaindrops className="size-14 lg:size-28" />
-					<div className="lg:text-5xl -m-4">
+					<WiRaindrops className="size-14 xl:size-28" />
+					<div className="lg:text-2xl 3xl:text-5xl -m-4 lg:whitespace-nowrap xl:whitespace-normal">
 						{amount.toFixed(1)} <span className="text-[0.5em]">mm</span>
 					</div>
 					<div id="chart-precipitation" className="ml-8">
@@ -106,8 +109,8 @@ const Precipitation: FC<PrecipitationProps> = ({ amount, time }) => {
 				</div>
 			) : (
 				<div className="flex flex-row items-center justify-start">
-					<WiRaindrops className="size-14 lg:size-28" />
-					<span className="lg:text-5xl -m-4">
+					<WiRaindrops className="size-14 xl:size-28" />
+					<span className="lg:text-5xl 3xl:text-5xl -m-4">
 						{(0).toFixed(1)} <span className="text-[0.5em]">mm</span>
 					</span>
 				</div>
@@ -129,8 +132,8 @@ const Temperature: FC<TemperatureProps> = ({ temperature, time }) => {
 					id="temperature"
 					className="flex flex-row items-center justify-start"
 				>
-					<WiThermometer className="size-14 lg:size-20" />
-					<div className="lg:text-5xl text-base">
+					<WiThermometer className="mobile-s:size-5 mobile-m:size-10 xl:size-20" />
+					<div className="lg:text-2xl 3xl:text-5xl text-base lg:whitespace-nowrap xl:whitespace-normal">
 						{temperature.toFixed(1)}{" "}
 						<span className="align-top text-[0.5em]">&deg; C</span>
 					</div>
@@ -158,7 +161,10 @@ const SummaryImage: FC<SummaryImageProps> = ({ iconName }) => {
 	return (
 		<div className="flex flex-row justify-center">
 			{iconName ? (
-				<div id="iconName" className="sm:w-1/6 md:w-2/6 lg:w-3/6">
+				<div
+					id="iconName"
+					className="mobile-s:size-5 lg:size-14 xl:size-20 2xl:size-28"
+				>
 					<ForecastImage
 						icon={`/weather-icons/${iconName}.png`}
 						alt={`For the next hour it should be ${iconName}.`}
