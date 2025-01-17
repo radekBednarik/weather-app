@@ -50,7 +50,7 @@ const CustomLineChart: FC<CustomLineChartProps> = ({
 					<ReferenceLine x={refLineXVal} stroke="magenta" />
 					<XAxis dataKey="time" />
 					<YAxis
-						domain={[edges.min - 1, edges.max + 1]}
+						domain={[edges.min, edges.max]}
 						label={{ value: units, position: "outsideLeft" }}
 						type="number"
 					/>
