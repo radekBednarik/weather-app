@@ -21,6 +21,11 @@ export default {
 			"2xl": "1536px",
 			"3xl": "2560px",
 		},
+		extend: {
+			animation: {
+				float: "float 3s ease-in-out infinite",
+			},
+		},
 	},
 	plugins: [],
 } satisfies Config;
