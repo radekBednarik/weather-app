@@ -18,5 +18,5 @@ export function formatISOToHoursAndMinutes(time: string) {
 }
 
 export function formatISOToMonthDayHoursMinutes(time: string) {
-	return format(new Date(time), "LL.dd - HH:mm");
+	return format(new Date(time), "LL/dd - HH:mm");
 }
