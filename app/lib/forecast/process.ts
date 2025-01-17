@@ -48,6 +48,19 @@ export function getTemperatureForecastTimeSeries(data: MetJsonForecast) {
 	return output;
 }
 
+export function getPrecipitationForecastTimeSeries(data: MetJsonForecast) {
+	const points = data.properties.timeseries;
+	const output = points.map((point) => {
+		const rain = point.data.next_1_hours?.details.precipitation_amount;
+		return {
+			time: formatISOToMonthDayHoursMinutes(point.time),
+			value: rain ? rain.toFixed(1) : (0).toFixed(1),
+		};
+	});
+
+	return output;
+}
+
 export function getWindspeedForecastTimeSeries(data: MetJsonForecast) {
 	const points = data.properties.timeseries;
 	const output = points.map((point) => {

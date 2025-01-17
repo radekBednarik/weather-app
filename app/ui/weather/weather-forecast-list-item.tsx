@@ -31,7 +31,7 @@ const WeatherForecastListItem: FC<WeatherForecastListItemProps> = ({
 			<VerticalSplitter />
 			<Temperature temperature={temperature} time={time} />
 			<VerticalSplitter className="hidden md:block" />
-			<Precipitation amount={precipitationAmount} />
+			<Precipitation amount={precipitationAmount} time={time} />
 			<VerticalSplitter className="hidden lg:block" />
 			<Windspeed amount={windSpeed} time={time} />
 		</div>
@@ -80,9 +80,10 @@ const Windspeed: FC<WindSpeedProps> = ({ amount, time }) => {
 
 interface PrecipitationProps {
 	amount?: number;
+	time: string;
 }
 
-const Precipitation: FC<PrecipitationProps> = ({ amount }) => {
+const Precipitation: FC<PrecipitationProps> = ({ amount, time }) => {
 	return (
 		<div className="hidden md:block flex-row justify-center">
 			{typeof amount !== "undefined" ? (
@@ -91,9 +92,17 @@ const Precipitation: FC<PrecipitationProps> = ({ amount }) => {
 					className="flex flex-row items-center justify-start"
 				>
 					<WiRaindrops className="size-14 lg:size-28" />
-					<span className="lg:text-5xl -m-4">
+					<div className="lg:text-5xl -m-4">
 						{amount.toFixed(1)} <span className="text-[0.5em]">mm</span>
-					</span>
+					</div>
+					<div id="chart-precipitation" className="ml-8">
+						<Link
+							href={`/charts/precipitation?time=${time}`}
+							aria-label="Click to access the precipitation forecast chart."
+						>
+							<FaChartLine className="text-slate-500" />
+						</Link>
+					</div>
 				</div>
 			) : (
 				<div className="flex flex-row items-center justify-start">
