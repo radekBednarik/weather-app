@@ -1,6 +1,7 @@
 import { getMinimumAndMaximumValue } from "@/app/lib/forecast/process";
 import type { FC } from "react";
 import {
+	CartesianGrid,
 	Legend,
 	Line,
 	LineChart,
@@ -44,6 +45,12 @@ const CustomLineChart: FC<CustomLineChartProps> = ({
 						bottom: 5,
 					}}
 				>
+					<CartesianGrid
+						horizontal={false}
+						fillOpacity={0.3}
+						fill="#64748B"
+						strokeDasharray="3 3"
+					/>
 					<ReferenceLine
 						y={typeof refLineYVal !== "undefined" ? refLineYVal : undefined}
 					/>
