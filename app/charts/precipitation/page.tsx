@@ -2,7 +2,7 @@
 
 import { WeatherForecastContext } from "@/app/contexts/weather-data-context";
 import { getPrecipitationForecastTimeSeries } from "@/app/lib/forecast/process";
-import CustomLineChart from "@/app/ui/charts/line-chart";
+import CustomBarChart from "@/app/ui/charts/bar-chart";
 import { useSearchParams } from "next/navigation";
 import { useContext } from "react";
 
@@ -18,7 +18,7 @@ export default function Page() {
 
 	return (
 		<>
-			<CustomLineChart
+			<CustomBarChart
 				heading="Precipitation forecast"
 				data={data}
 				dataName="precipitation"
