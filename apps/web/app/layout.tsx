@@ -5,6 +5,7 @@ import { roboto } from "@/app/ui/fonts/fonts";
 import Footer from "@/app/ui/footer/footer";
 import Header from "@/app/ui/header/header";
 import HeaderForecastSummaryIcon from "@/app/ui/images/header-forecast-summary-image";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
 	title: "Weather forecast",
@@ -21,6 +22,7 @@ export default function RootLayout({
 			<body
 				className={`${roboto.className} antialiased container mx-auto my-auto mt-4 relative`}
 			>
+				<Analytics />
 				<Header />
 				<WeatherForecastProvider>
 					<HeaderForecastSummaryIcon />
