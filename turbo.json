@@ -27,6 +27,10 @@
         ".next/**",
         "!.next/cache/**"
       ]
+    },
+    "lint": {
+      "cache": false,
+      "persistent": false
     }
   }
 }
