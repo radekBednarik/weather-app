@@ -1,0 +1,15 @@
+{
+  "name": "harvester",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "",
+    "build": "",
+    "lint": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
