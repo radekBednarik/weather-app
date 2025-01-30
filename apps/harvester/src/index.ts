@@ -1,4 +1,5 @@
 import { getForecastData } from "@/met-api/api.js";
+import "dotenv/config";
 
 async function main() {
 	const forecastData = await getForecastData({
