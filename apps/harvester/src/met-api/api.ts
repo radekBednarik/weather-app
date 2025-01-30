@@ -20,17 +20,19 @@ export async function getForecastData({
 	longitude,
 	altitude,
 }: { latitude: number; longitude: number; altitude: number | null }) {
-	const url = "https://api.met.no/weatherapi/locationforecast/2.0/complete";
+	const url = new URL(
+		"/weatherapi/locationforecast/2.0/complete",
+		"https://api.met.no",
+	);
 
-	const params = new URLSearchParams();
-	params.append("lat", latitude.toString());
-	params.append("lon", longitude.toString());
+	url.searchParams.set("lat", latitude.toString());
+	url.searchParams.set("lon", longitude.toString());
 
 	if (altitude) {
-		params.append("altitude", altitude.toString());
+		url.searchParams.set("altitude", altitude.toString());
 	}
 
-	const fullUrl = `${url}?${params.toString()}`;
+	const fullUrl = url.toString();
 
 	try {
 		const response = await fetch(fullUrl, {
@@ -44,11 +46,9 @@ export async function getForecastData({
 			response.headers.get("expires") ||
 			add(new Date(), { hours: 1 }).toUTCString();
 
-		const json = await response.json();
-
 		if (response.ok) {
-			const _json = json as MetJsonForecast;
-			return { data: _json, expires: headerExpires };
+			const json = (await response.json()) as MetJsonForecast;
+			return { data: json, expires: headerExpires };
 		}
 
 		return {
