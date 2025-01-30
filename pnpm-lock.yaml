@@ -12,6 +12,12 @@ importers:
         specifier: ^2.3.4
         version: 2.3.4
 
+  apps/harvester:
+    devDependencies:
+      '@types/node':
+        specifier: ^20.17.14
+        version: 20.17.16
+
   apps/web:
     dependencies:
       '@vercel/analytics':
